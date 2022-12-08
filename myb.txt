@@ -1,0 +1,76 @@
+
+import random
+
+import telebot
+
+bot = telebot.TeleBot('2011658030:AAFfs9XfEtlxftjoKLh4aIUWHdT3vd8zVyo')
+ugt = ['📰AITU News: https:https://t.me/aitunews\n\n🙇AI 2U: https://t.me/ait2u\n\nC++ AITU 2021: https://t.me/joinchat/sp3eCrUaqKs3NzAy\n\n🍽️AITU MENU:@aitu_menu_bot\n\n📚E-liblary: @aitulibrarybot']
+dsewt = ['1️⃣Deputy director: KENZHEBEKOV ARMAN KHUANDYKOVICH\nEmail: arman.kenzhebekov@astanait.edu.kz\nRoom: С1. – 2.45\n\n2️⃣Curator: ZHAKENOVA AISLU ZHAKSSYLYKOVNA\nEmail: aislu.zhakenova@astanait.edu.kz\nRoom: Female dormitory ']
+sait = ['🎯Aim of the Department - To create conditions for the organization and effective work of scientific and innovative teams, including students, undergraduates and doctoral students of the University, for the implementation of innovative scientific and technical ideas, social and business projects.\n\n1️⃣Department Director: ZHAKIYEV NURKHAT\nEmail: nurkhat.zhakiyev@astanait.edu.kz\nRoom: C1.2.156\n\n2️⃣General manager:KAMBAROVA ZHULDUZ\nEmail: Zhulduz.Kambarova@astanait.edu.kz\nRoom:  C1.2.155']
+dirt = ['🎯The main task of the department is to develop and expand international relations with higher educational institutions, scientific organizations of neighboring and other countries, with leading transnational companies and other enterprises in the field of education, science and innovation.\n\n1️⃣Director of the Department:SALYKOVA LEILA\nEmail: leila.salykova@astanait.edu.kz\nRoom: С1. – 3.3']
+ddtt = ['🎯Creation of a digital space to support the core activities of the university, covering the basic business processes of structural units aimed at improving the overall educational process and achieving the implementation of modern requirements for the training of specialists.\n\n1️⃣Director:LEBEDEV DANIIL VLADIMIROVICH\nRoom: C2.3.71']
+dlpmt = ['🎯The main task of the Department is the enforcement of law in the activities of LLP “Astana IT University”, and the provision of HR administration and accounting, the development of personnel management system.\n\n1️⃣Director of department:KERIMSHE ASKAR SAPARYMBETULY\nEmail: Askar.Kerimshe@astanait.edu.kz\nRoom: C1.3.302️\n\n2️⃣Specialist:KENEBAEVA BAKYT KAIROSHEVNA\nEmail: Bakyt.Kenebayeva@astanait.edu.kz\nRoom: С1.3.32']
+tfde = ['1️⃣Dean:Bolatzhan Kumalakov\nRoom: № С1-322\n Email: Bolatzhan.Kumalakov@astanait.edu.kz\n\n2️⃣Deputy Dean for Academic Affairs: Sayazhan Nakipova\nEmail: Sayazhan.Nakipova@astanait.edu.kz\n\n3️⃣Deputy Dean for Social and Educational Work: Adilkhan.Sadvakassov\nEmail: Adilkhan.Sadvakassov@astanait.edu.kz']
+from telebot import types
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    # keyboard
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("👤Deans office👤")
+    item2 = types.KeyboardButton("👥Departments👥")
+    item3 = types.KeyboardButton("🔗Useful groups🔗")
+    item4 = types.KeyboardButton("🧬About us🧬")
+
+    
+ 
+    markup.add(item1, item2,item3,item4)
+ 
+    bot.send_message(message.chat.id, "Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, I'll help you find useful information about Astana IT University.".format(message.from_user, bot.get_me()),
+        parse_mode='html', reply_markup=markup)
+@bot.message_handler(commands=['info'])
+def welcome(message):
+        bot.send_message(message.chat.id,'Bot made by: Nursultan Rayymbekov🧑🏽‍🦱\nContacts: Telegram - @nilfgart🧬')
+@bot.message_handler(content_types=['text'])
+def lalala(message):    
+    if message.chat.type == 'private':
+        if message.text == '👤Deans office👤':
+            bot.send_message(message.chat.id,'<b>1️⃣Dean:Bolatzhan Kumalakov</b>\n<b>Room:</b> № С1-322\n <b>Email:</b> Bolatzhan.Kumalakov@astanait.edu.kz\n\n<b>2️⃣Deputy Dean for Academic Affairs: Sayazhan Nakipova</b>\n<b>Email:</b> Sayazhan.Nakipova@astanait.edu.kz\n\n<b>3️⃣Deputy Dean for Social and Educational Work: Adilkhan.Sadvakassov</b>\n<b>Email:</b> Adilkhan.Sadvakassov@astanait.edu.kz'.format(message.from_user, bot.get_me()),
+        parse_mode='html')
+        elif message.text == '🔗Useful groups🔗':
+            bot.send_message(message.chat.id, '<b>📰AITU News</b>: https:https://t.me/aitunews\n\n🙇<b>AI 2U:</b> https://t.me/ait2u\n\n<b>C++ AITU 2021:</b> https://t.me/joinchat/sp3eCrUaqKs3NzAy\n\n<b>🍽️AITU MENU:</b>@aitu_menu_bot\n\n<b>📚E-liblary:</b> @aitulibrarybot'.format(message.from_user, bot.get_me()),
+        parse_mode='html')
+        elif message.text == '🧬About us🧬':
+            bot.send_message(message.chat.id, '<b>Address all your questions to: @nilfgart🧬</b>'.format(message.from_user, bot.get_me()),
+        parse_mode='html')
+        elif message.text == '👥Departments👥':
+ 
+            markup = types.InlineKeyboardMarkup(row_width=2)
+            item1 = types.InlineKeyboardButton("🤵🏻‍♂️Department of legal support and personnel management", callback_data='dlpm')
+            item2 = types.InlineKeyboardButton("💡Department of Digital Transformation💡", callback_data='ddt')
+            item3 = types.InlineKeyboardButton("🇬🇧 🇺🇸International relations🇬🇧 🇺🇸",callback_data='dir')
+            item4 = types.InlineKeyboardButton("🔬Science and innovations🔬",callback_data='sai')
+            item5 = types.InlineKeyboardButton("📚Department of Social and Educational Work📚",callback_data='dsew')
+            markup.add(item1, item2,item3,item4,item5)
+ 
+            bot.send_message(message.chat.id, '<b>Choose department</b>'.format(message.from_user, bot.get_me()),
+        parse_mode='html', reply_markup=markup) 
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+    
+        if call.message:
+            if call.data == 'dlpm':
+                bot.send_message(call.message.chat.id, '<b>🎯The main task of the Department</b> is the enforcement of law in the activities of LLP <b>“Astana IT University”</b>, and the provision of HR administration and accounting, the development of personnel management system.\n\n<b>1️⃣Director of department:KERIMSHE ASKAR SAPARYMBETULY</b>\nEmail: Askar.Kerimshe@astanait.edu.kz\nRoom: C1.3.302️\n\n<b>2️⃣Specialist:KENEBAEVA BAKYT KAIROSHEVNA</b>\n<b>Email:</b> Bakyt.Kenebayeva@astanait.edu.kz\n<b>Room:</b> С1.3.32'.format(call.from_user, bot.get_me()),
+        parse_mode='html')
+            elif call.data == 'ddt':
+                bot.send_message(call.message.chat.id,'<b>🎯Creation of a digital space</b> to support the core activities of the university, covering the basic business processes of structural units aimed at improving the overall educational process and achieving the implementation of modern requirements for the training of specialists.\n\n<b>1️⃣Director:LEBEDEV DANIIL VLADIMIROVICH</b>\n<b>Room:</b> C2.3.71'.format(call.from_user, bot.get_me()),
+        parse_mode='html')
+            elif call.data == 'dir':
+                bot.send_message(call.message.chat.id,'🎯<b>The main task of the department </b>is to develop and expand international relations with higher educational institutions, scientific organizations of neighboring and other countries, with leading transnational companies and other enterprises in the field of education, science and innovation.\n\n<b>1️⃣Director of the Department:SALYKOVA LEILA</b>\n<b>Email:</b> leila.salykova@astanait.edu.kz\n<b>Room:</b> С1. – 3.3'.format(call.from_user, bot.get_me()),
+        parse_mode='html')
+            elif call.data == 'sai':
+                bot.send_message(call.message.chat.id,'<b>🎯Aim of the Department </b>- To create conditions for the organization and effective work of scientific and innovative teams, including students, undergraduates and doctoral students of the University, for the implementation of innovative scientific and technical ideas, social and business projects.\n\n<b>1️⃣Department Director: ZHAKIYEV NURKHAT</b>\n<b>Email:</b> nurkhat.zhakiyev@astanait.edu.kz\n<b>Room:</b> C1.2.156\n\n<b>2️⃣General manager:KAMBAROVA ZHULDUZ</b>\n<b>Email:</b> Zhulduz.Kambarova@astanait.edu.kz\n<b>Room:</b>  C1.2.155'.format(call.from_user, bot.get_me()),
+        parse_mode='html')    
+            elif call.data == 'dsew':
+                bot.send_message(call.message.chat.id,'<b>1️⃣Deputy director: KENZHEBEKOV ARMAN KHUANDYKOVICH</b>\n<b>Email:</b> arman.kenzhebekov@astanait.edu.kz\n<b>Room:</b> С1. – 2.45\n\n<b>2️⃣Curator: ZHAKENOVA AISLU ZHAKSSYLYKOVNA</b>\n<b>Email:</b> aislu.zhakenova@astanait.edu.kz\n<b>Room:</b> Female dormitory '.format(call.from_user, bot.get_me()),
+        parse_mode='html')            
+bot.polling(none_stop=True)
